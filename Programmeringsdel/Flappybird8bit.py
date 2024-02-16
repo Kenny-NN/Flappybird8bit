@@ -1,14 +1,14 @@
 import pygame
 from pygame.locals import *
 
-#Dette er en kommentar
+#Dette er en kommentar  
 
 pygame.init()
 
 Vindu_Bredde = 700
 Vindu_Hoyde = 700
 vindu = pygame.display.set_mode((Vindu_Bredde, Vindu_Hoyde))
-pygame.display.set_caption('Hoppe spill')
+pygame.display.set_caption('Flappy bird 8bit')
 
 clock = pygame.time.Clock()
 
