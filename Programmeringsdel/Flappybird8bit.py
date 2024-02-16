@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-
+#Dette er en kommentar
 
 pygame.init()
 
