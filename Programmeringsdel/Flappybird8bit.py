@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-
+hei = 221212121
 
 pygame.init()
 
