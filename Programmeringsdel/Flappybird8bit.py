@@ -1,14 +1,15 @@
 import pygame
 from pygame.locals import *
 
-hei = 221212121
+# morwmrmfpw
+# mdfwprmprwmf
 
 pygame.init()
 
 Vindu_Bredde = 700
 Vindu_Hoyde = 700
 vindu = pygame.display.set_mode((Vindu_Bredde, Vindu_Hoyde))
-pygame.display.set_caption('Hoppe spill')
+pygame.display.set_caption('Flappy bird 8bit')
 
 clock = pygame.time.Clock()
 
