@@ -179,7 +179,7 @@ while fortsett:
             byggning_gruppe.add(Oppe_byggning)
             siste_byggning = tiden_nu
 
-        #Draw and scroll the ground
+        #Ruller bakken
         bakke_scroll -= scroll_speed
         if abs(bakke_scroll) > 220 :
             bakke_scroll = 0
