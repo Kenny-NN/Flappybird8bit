@@ -119,7 +119,7 @@ class Knapp():
 
 byggning_gruppe = pygame.sprite.Group()
 spiller = Superman(50, int(Vindu_Bredde / 2))
-knapp = Knapp(Vindu_Bredde // 2 - 50, Vindu_Hoyde // 2 - 100)
+knapp = Knapp(Vindu_Bredde // 2 - 50, 350)
 
 fortsett = True
 while fortsett:
