@@ -68,7 +68,6 @@ class Superman():
             self.rect.top = 0
             self.fart = 0
         
-
         #rotere superman
         if not game_over:
             rotated_image = pygame.transform.rotate(self.image, self.fart * -2)
