@@ -12,7 +12,7 @@ vindu = pygame.display.set_mode((Vindu_Bredde, Vindu_Hoyde))
 pygame.display.set_caption('Super City')
 
 
-#definere spill variabler
+#Definere spill variabler
 bakke_scroll = 0
 scroll_speed = 4
 fly = False
@@ -59,7 +59,7 @@ class Superman():
         #hoppe funksjon
         key = pygame.key.get_pressed()
 
-        if key[pygame.K_SPACE] and self.hoppe == False:
+        if key[pygame.K_SPACE] and self.hoppe == False and game_over == False:
             self.vel = -10
        
             
@@ -150,6 +150,9 @@ while fortsett:
     if spiller.rect.bottom >= 710:
         game_over = True
         fly = False
+
+        for building in byggning_gruppe:
+            building.kollisjon = True   
             
     
     if not game_over:
