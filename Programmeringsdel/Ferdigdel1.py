@@ -42,7 +42,7 @@ class Superman():
         self.rect.x = x
         self.rect.y = y
         self.fart = 0
-        self.hoppe = False
+        self.trykket = False
         self.poengteller = False
 
 
@@ -58,14 +58,16 @@ class Superman():
         #hoppe funksjon
         key = pygame.key.get_pressed()
 
-        if key[pygame.K_SPACE] and self.hoppe == False and game_over == False:
-            self.hoppe = True
+        if key[pygame.K_SPACE] and self.trykket == False and game_over == False:
+            self.trykket = True
             self.fart = -10
         elif not key[pygame.K_SPACE]:
-            self.hoppe = False
+            self.trykket = False
             
-        if spiller.rect.y > 850:
-            self.hoppe = False
+        if self.rect.top <= 0:
+            self.rect.top = 0
+            self.fart = 0
+        
 
         #rotere superman
         if not game_over:
@@ -206,7 +208,7 @@ while fortsett:
             if event.key == pygame.K_SPACE and fly == False and game_over == False:
                 fly = True
         
-
+    print(spiller.rect.y)
 
     pygame.display.update()
     
