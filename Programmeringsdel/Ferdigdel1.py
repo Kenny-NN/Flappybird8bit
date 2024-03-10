@@ -23,9 +23,9 @@ siste_byggning = pygame.time.get_ticks() - byggning_freq
 score = 0
 
 #Laste inn bilder
-bg = pygame.image.load("./Bilder_og_Sprite/BGG.png")
-bakke_bg = pygame.image.load("./Bilder_og_Sprite/BakkeForSpillet.png")
-linje_bg = pygame.image.load("./Bilder_og_Sprite/Rulle.png")
+bg = pygame.image.load("Flappybird8bit/Bilder_og_Sprite/BGG.png")
+bakke_bg = pygame.image.load("Flappybird8bit/Bilder_og_Sprite/BakkeForSpillet.png")
+linje_bg = pygame.image.load("Flappybird8bit/Bilder_og_Sprite/Rulle.png")
 
 def restart_spillet():
     byggning_gruppe.empty()
@@ -36,7 +36,7 @@ def restart_spillet():
 
 class Superman():
     def __init__(self, x, y):
-        img = pygame.image.load("./Bilder_og_Sprite/Supermanflying1.png")
+        img = pygame.image.load("Flappybird8bit/Bilder_og_Sprite/Supermanflying1.png")
         self.image = pygame.transform.scale(img, (100, 25))
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -75,7 +75,7 @@ class Superman():
 class Byggning(pygame.sprite.Sprite):
     def __init__(self, x, y, posisjon):
         pygame.sprite.Sprite.__init__(self)
-        img = pygame.image.load("./Bilder_og_Sprite/Byggning.png")  
+        img = pygame.image.load("Flappybird8bit/Bilder_og_Sprite/Byggning.png")  
         self.image = pygame.transform.scale(img, (100, 450))
         self.rect = self.image.get_rect()
         self.kollisjon = False 
@@ -95,7 +95,7 @@ class Byggning(pygame.sprite.Sprite):
 
 class Knapp():
     def __init__(self, x, y):
-        img = pygame.image.load("./Bilder_og_Sprite/Reset1.png")
+        img = pygame.image.load("Flappybird8bit/Bilder_og_Sprite/Reset1.png")
         self.image = pygame.transform.scale(img, (100, 50))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x,y)
