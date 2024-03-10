@@ -128,6 +128,7 @@ while fortsett:
     #Bakgrunn
     vindu.blit(bg, (0,0))
 
+    #Byggning
     byggning_gruppe.draw(vindu)
     byggning_gruppe.update()
 
@@ -143,7 +144,7 @@ while fortsett:
     #Tegner poeng
     font = pygame.font.SysFont(None, 60)
     score_text = font.render(str(score), True, (255, 255, 255))
-    vindu.blit(score_text, (int(Vindu_Bredde/ 2), 20))
+    vindu.blit(score_text, (int(Vindu_Bredde / 2), 20))
 
     #Sjekker hvis spiller har truffet linje
     if spiller.rect.bottom >= 710:
