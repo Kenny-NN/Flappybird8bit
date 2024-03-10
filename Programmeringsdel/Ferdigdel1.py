@@ -64,7 +64,9 @@ class Superman():
         elif not key[pygame.K_SPACE]:
             self.hoppe = False
             
-            
+        if spiller.rect.y > 850:
+            self.hoppe = False
+
         #rotere superman
         if not game_over:
             rotated_image = pygame.transform.rotate(self.image, self.fart * -2)
@@ -157,7 +159,6 @@ while fortsett:
         for building in byggning_gruppe:
             building.kollisjon = True   
             
-    
     if not game_over:
         #Sjekker kollisjon mellom spiller og hinder
         if pygame.sprite.spritecollide(spiller, byggning_gruppe, False):
