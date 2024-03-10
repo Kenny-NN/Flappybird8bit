@@ -18,6 +18,7 @@ fly = False
 game_over = False
 byggning_gap = 200
 byggning_freq = 1500 #millisekunder
+hoppe_freq = 150
 siste_byggning = pygame.time.get_ticks() - byggning_freq
 score = 0
 
@@ -40,31 +41,33 @@ class Superman():
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        self.vel = 0
+        self.fart = 0
         self.hoppe = False
         self.poengteller = False
 
 
     def update(self):
-
         #gravitasjon
         if fly == True:
-            self.vel += 0.5
-            if self.vel > 8:
-                self.vel = 8
+            self.fart += 0.5
+            if self.fart > 8:
+                self.fart = 8
             if self.rect.y < 660: 
-                self.rect.y += int(self.vel)
+                self.rect.y += int(self.fart)
 
         #hoppe funksjon
         key = pygame.key.get_pressed()
 
         if key[pygame.K_SPACE] and self.hoppe == False and game_over == False:
-            self.vel = -10
-       
+            self.hoppe = True
+            self.fart = -10
+        elif not key[pygame.K_SPACE]:
+            self.hoppe = False
+            
             
         #rotere superman
         if not game_over:
-            rotated_image = pygame.transform.rotate(self.image, self.vel * -2)
+            rotated_image = pygame.transform.rotate(self.image, self.fart * -2)
             self.rect = rotated_image.get_rect(center=self.rect.center)
             vindu.blit(rotated_image, self.rect) 
         else:
