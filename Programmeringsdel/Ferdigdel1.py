@@ -16,7 +16,7 @@ bakke_scroll = 0
 scroll_speed = 4
 fly = False
 game_over = False
-byggning_gap = 200
+byggning_gap = 165
 byggning_freq = 1500 #millisekunder
 hoppe_freq = 150
 siste_byggning = pygame.time.get_ticks() - byggning_freq
@@ -44,7 +44,6 @@ class Superman():
         self.fart = 0
         self.trykket = False
         self.poengteller = False
-
 
     def update(self):
         #gravitasjon
