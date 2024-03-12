@@ -27,6 +27,10 @@ bg = pygame.image.load("Bilder_og_Sprite/BGG.png")
 bakke_bg = pygame.image.load("Bilder_og_Sprite/BakkeForSpillet.png")
 linje_bg = pygame.image.load("Bilder_og_Sprite/Rulle.png")
 
+#Lyd
+Bygg_sfx = pygame.mixer.Sound
+Superman_sfx = pygame.mixer.Sound
+
 def restart_spillet():
     byggning_gruppe.empty()
     spiller.rect.x = 50
