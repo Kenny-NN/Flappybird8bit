@@ -29,8 +29,8 @@ bakke_bg = pygame.image.load("Bilder_og_Sprite/BakkeForSpillet.png")
 linje_bg = pygame.image.load("Bilder_og_Sprite/Rulle.png")
 
 #Lyd
-Bygg_sfx = pygame.mixer.Sound
-Superman_sfx = pygame.mixer.Sound
+Bygg_sfx = pygame.mixer.Sound("Lyd/coin.wav")
+Superman_sfx = pygame.mixer.Sound("Lyd/dead.wav")
 
 def restart_spillet():
     byggning_gruppe.empty()
@@ -174,6 +174,7 @@ while fortsett:
         #Sjekker kollisjon mellom spiller og hinder
         if pygame.sprite.spritecollide(spiller, byggning_gruppe, False):
             game_over = True
+            Superman_sfx.play()
 
             for building in byggning_gruppe:
                 building.kollisjon = True
@@ -183,6 +184,7 @@ while fortsett:
             if not spiller.poengteller:
                 score += 1
                 spiller.poengteller = True
+                Bygg_sfx.play() 
         else:
             spiller.poengteller = False
 
