@@ -21,6 +21,7 @@ byggning_freq = 1500 #millisekunder
 hoppe_freq = 150
 siste_byggning = pygame.time.get_ticks() - byggning_freq
 score = 0
+high_score = 0
 
 #Laste inn bilder
 bg = pygame.image.load("Bilder_og_Sprite/BGG.png")
@@ -134,6 +135,12 @@ while fortsett:
     
     clock.tick(60)
 
+    if high_score < score:
+        high_score = score
+    elif high_score == score:
+        high_score = high_score
+
+
     #Bakgrunn
     vindu.blit(bg, (0,0))
 
@@ -197,6 +204,10 @@ while fortsett:
         
     #Knapp
     if game_over == True:
+        #Tegner High Score
+        font = pygame.font.SysFont(None, 35)
+        score_text = font.render("High Score: " + str(high_score), True, (255, 255, 255))
+        vindu.blit(score_text, (int(250), 300))
         if knapp.tegne() == True:
             game_over = False    
             score = restart_spillet()
