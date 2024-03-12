@@ -40,7 +40,7 @@ def restart_spillet():
 
 class Superman():
     def __init__(self, x, y):
-        img = pygame.image.load("Bilder_og_Sprite/Supermanflying1.png")
+        img = pygame.image.load("Bilder_og_Sprite/SuperPakkiflying.png")
         self.image = pygame.transform.scale(img, (100, 25))
         self.rect = self.image.get_rect()
         self.rect.x = x
