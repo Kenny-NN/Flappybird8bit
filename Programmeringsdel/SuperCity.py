@@ -11,21 +11,26 @@ Vindu_Hoyde = 850
 vindu = pygame.display.set_mode((Vindu_Bredde, Vindu_Hoyde))
 pygame.display.set_caption('Super City')
 
-
 #Definere spill variabler
 bakke_scroll = 0
 scroll_speed = 4
 fly = False
 game_over = False
-byggning_gap = 200
+byggning_gap = 165
 byggning_freq = 1500 #millisekunder
+hoppe_freq = 150
 siste_byggning = pygame.time.get_ticks() - byggning_freq
 score = 0
+high_score = 0
 
 #Laste inn bilder
 bg = pygame.image.load("Bilder_og_Sprite/BGG.png")
 bakke_bg = pygame.image.load("Bilder_og_Sprite/BakkeForSpillet.png")
 linje_bg = pygame.image.load("Bilder_og_Sprite/Rulle.png")
+
+#Lyd
+Bygg_sfx = pygame.mixer.Sound("Lyd/coin.wav")
+Superman_sfx = pygame.mixer.Sound("Lyd/dead.wav")
 
 def restart_spillet():
     byggning_gruppe.empty()
@@ -36,36 +41,40 @@ def restart_spillet():
 
 class Superman():
     def __init__(self, x, y):
-        img = pygame.image.load("Bilder_og_Sprite/Supermanflying1.png")
+        img = pygame.image.load("Bilder_og_Sprite/SuperUBBIflying.png")
         self.image = pygame.transform.scale(img, (100, 25))
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        self.vel = 0
-        self.hoppe = False
+        self.fart = 0
+        self.trykket = False
         self.poengteller = False
 
-
     def update(self):
-
         #gravitasjon
         if fly == True:
-            self.vel += 0.5
-            if self.vel > 8:
-                self.vel = 8
+            self.fart += 0.5
+            if self.fart > 8:
+                self.fart = 8
             if self.rect.y < 660: 
-                self.rect.y += int(self.vel)
+                self.rect.y += int(self.fart)
 
         #hoppe funksjon
         key = pygame.key.get_pressed()
 
-        if key[pygame.K_SPACE] and self.hoppe == False and game_over == False:
-            self.vel = -10
-       
+        if key[pygame.K_SPACE] and self.trykket == False and game_over == False:
+            self.trykket = True
+            self.fart = -10
+        elif not key[pygame.K_SPACE]:
+            self.trykket = False
             
+        if self.rect.top <= 0:
+            self.rect.top = 0
+            self.fart = 0
+        
         #rotere superman
         if not game_over:
-            rotated_image = pygame.transform.rotate(self.image, self.vel * -2)
+            rotated_image = pygame.transform.rotate(self.image, self.fart * -2)
             self.rect = rotated_image.get_rect(center=self.rect.center)
             vindu.blit(rotated_image, self.rect) 
         else:
@@ -126,9 +135,15 @@ while fortsett:
     
     clock.tick(60)
 
+    if high_score < score:
+        high_score = score
+    elif high_score == score:
+        high_score = high_score
+
     #Bakgrunn
     vindu.blit(bg, (0,0))
 
+    #Byggning
     byggning_gruppe.draw(vindu)
     byggning_gruppe.update()
 
@@ -139,12 +154,12 @@ while fortsett:
     vindu.blit(bakke_bg, (0,750))
 
     #linje
-    vindu.blit(linje_bg, (bakke_scroll, 730))
+    vindu.blit(linje_bg, (bakke_scroll, 735))
 
     #Tegner poeng
     font = pygame.font.SysFont(None, 60)
     score_text = font.render(str(score), True, (255, 255, 255))
-    vindu.blit(score_text, (int(Vindu_Bredde/ 2), 20))
+    vindu.blit(score_text, (int(Vindu_Bredde / 2), 20))
 
     #Sjekker hvis spiller har truffet linje
     if spiller.rect.bottom >= 710:
@@ -154,11 +169,11 @@ while fortsett:
         for building in byggning_gruppe:
             building.kollisjon = True   
             
-    
     if not game_over:
         #Sjekker kollisjon mellom spiller og hinder
         if pygame.sprite.spritecollide(spiller, byggning_gruppe, False):
             game_over = True
+            Superman_sfx.play()
 
             for building in byggning_gruppe:
                 building.kollisjon = True
@@ -168,6 +183,7 @@ while fortsett:
             if not spiller.poengteller:
                 score += 1
                 spiller.poengteller = True
+                Bygg_sfx.play() 
         else:
             spiller.poengteller = False
 
@@ -189,6 +205,10 @@ while fortsett:
         
     #Knapp
     if game_over == True:
+        #Tegner High Score
+        font = pygame.font.SysFont(None, 35)
+        score_text = font.render("High Score: " + str(high_score), True, (255, 255, 255))
+        vindu.blit(score_text, (int(250), 300))
         if knapp.tegne() == True:
             game_over = False    
             score = restart_spillet()
@@ -202,9 +222,6 @@ while fortsett:
             if event.key == pygame.K_SPACE and fly == False and game_over == False:
                 fly = True
         
-
-
     pygame.display.update()
-    
 
 pygame.quit()
