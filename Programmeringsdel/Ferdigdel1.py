@@ -140,7 +140,6 @@ while fortsett:
     elif high_score == score:
         high_score = high_score
 
-
     #Bakgrunn
     vindu.blit(bg, (0,0))
 
@@ -155,7 +154,7 @@ while fortsett:
     vindu.blit(bakke_bg, (0,750))
 
     #linje
-    vindu.blit(linje_bg, (bakke_scroll, 730))
+    vindu.blit(linje_bg, (bakke_scroll, 735))
 
     #Tegner poeng
     font = pygame.font.SysFont(None, 60)
@@ -223,9 +222,6 @@ while fortsett:
             if event.key == pygame.K_SPACE and fly == False and game_over == False:
                 fly = True
         
-    print(spiller.rect.y)
-
     pygame.display.update()
-    
 
 pygame.quit()
