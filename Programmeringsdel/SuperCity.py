@@ -161,6 +161,10 @@ while fortsett:
     score_text = font.render(str(score), True, (255, 255, 255))
     vindu.blit(score_text, (int(Vindu_Bredde / 2), 20))
 
+    #High Score
+    font_high = pygame.font.SysFont(None, 35)
+    high_text = font_high.render("High Score: " + str(high_score), True, (255, 255, 255))
+
     #Sjekker hvis spiller har truffet linje
     if spiller.rect.bottom >= 710:
         game_over = True
@@ -206,9 +210,7 @@ while fortsett:
     #Knapp
     if game_over == True:
         #Tegner High Score
-        font = pygame.font.SysFont(None, 35)
-        score_text = font.render("High Score: " + str(high_score), True, (255, 255, 255))
-        vindu.blit(score_text, (int(250), 300))
+        vindu.blit(high_text, (int(250), 300))
         if knapp.tegne() == True:
             game_over = False    
             score = restart_spillet()
