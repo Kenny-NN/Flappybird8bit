@@ -163,15 +163,15 @@ while fortsett:
 
     #High Score
     font_high = pygame.font.SysFont(None, 35)
-    high_text = font_high.render("High Score: " + str(high_score), True, (255, 255, 255))
+    highscore_text = font_high.render("High Score: " + str(high_score), True, (255, 255, 255))
 
     #Sjekker hvis spiller har truffet linje
     if spiller.rect.bottom >= 710:
         game_over = True
         fly = False
 
-        for building in byggning_gruppe:
-            building.kollisjon = True   
+        for bygg in byggning_gruppe:
+            bygg.kollisjon = True   
             
     if not game_over:
         #Sjekker kollisjon mellom spiller og hinder
@@ -179,8 +179,8 @@ while fortsett:
             game_over = True
             Superman_sfx.play()
 
-            for building in byggning_gruppe:
-                building.kollisjon = True
+            for bygg in byggning_gruppe:
+                bygg.kollisjon = True
         
         if len(byggning_gruppe) > 0 and spiller.rect.right > byggning_gruppe.sprites()[0].rect.right:
         #Går opp dersom spilleren ikke har passert byggningen
@@ -210,7 +210,7 @@ while fortsett:
     #Knapp
     if game_over == True:
         #Tegner High Score
-        vindu.blit(high_text, (int(250), 300))
+        vindu.blit(highscore_text, (int(250), 300))
         if knapp.tegne() == True:
             game_over = False    
             score = restart_spillet()
