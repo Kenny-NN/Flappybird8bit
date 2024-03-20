@@ -13,7 +13,7 @@ pygame.display.set_caption('Super City')
 
 #Definere spill variabler
 bakke_scroll = 0
-scroll_speed = 4
+scroll_fart = 4
 fly = False
 game_over = False
 byggning_gap = 165
@@ -97,7 +97,7 @@ class Byggning(pygame.sprite.Sprite):
         
     def update(self):
         if not self.kollisjon:  #Hvis det ikke har kollidert så kjører den
-            self.rect.x -= scroll_speed
+            self.rect.x -= scroll_fart
 
         if self.rect.right < 0:
             self.kill()
@@ -203,7 +203,7 @@ while fortsett:
             siste_byggning = tiden_nu
 
         #Ruller bakken
-        bakke_scroll -= scroll_speed
+        bakke_scroll -= scroll_fart
         if abs(bakke_scroll) > 220 :
             bakke_scroll = 0
         
