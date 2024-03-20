@@ -51,7 +51,7 @@ class Superman():
         self.poengteller = False
 
     def update(self):
-        #gravitasjon
+        #tyngekraft
         if fly == True:
             self.fart += 0.5
             if self.fart > 8:
