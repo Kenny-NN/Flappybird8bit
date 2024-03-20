@@ -67,7 +67,8 @@ class Superman():
             self.fart = -10
         elif not key[pygame.K_SPACE]:
             self.trykket = False
-            
+
+        #grense på topp  
         if self.rect.top <= 0:
             self.rect.top = 0
             self.fart = 0
